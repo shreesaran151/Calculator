@@ -1,16 +1,16 @@
 const displayEl = document.getElementById('display');
     const keysEl = document.getElementById('keys');
 
-    // State
-    let current = '0';           // shown value
-    let stored = null;           // stored operand
-    let pendingOp = null;        // pending operator
-    let overwrite = true;        // next digit should overwrite
+   
+    let current = '0';       
+    let stored = null;
+    let pendingOp = null;  
+    let overwrite = true;  
 
-    // helper update
+ 
     const updateDisplay = () => displayEl.textContent = formatNumber(current);
 
-    // format number: avoid exponential display for small reasonable numbers
+    
     const formatNumber = (numStr) => {
       if (numStr === 'Error') return 'Error';
       if (numStr === '') return '0';
@@ -22,7 +22,7 @@ const displayEl = document.getElementById('display');
       return numStr;
     };
 
-    // safely evaluate two operands with an operator
+    
     const compute = (a, op, b) => {
       const x = parseFloat(a);
       const y = parseFloat(b);
@@ -37,7 +37,7 @@ const displayEl = document.getElementById('display');
       }
     };
 
-    // handle actions
+    
     const handleKey = (target) => {
       const v = target.dataset.value;
       const action = target.dataset.action;
@@ -98,14 +98,14 @@ const displayEl = document.getElementById('display');
       }
     };
 
-    // delegate click events to keys
+    
     keysEl.addEventListener('click', (e) => {
       const btn = e.target.closest('button');
       if (!btn) return;
       handleKey(btn);
     });
 
-    // keyboard support
+    
     window.addEventListener('keydown', (e) => {
       // allow numbers, operators, Enter, Backspace, Escape, %
       if (/^[0-9]$/.test(e.key)) {
@@ -144,5 +144,5 @@ const displayEl = document.getElementById('display');
       }
     });
 
-    // initialize
+   
     updateDisplay();
